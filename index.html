@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompts II</title>
+  <style>
+    body {
+      font-family: serif;
+      margin: 2rem auto;
+      max-width: 700px;
+      line-height: 1.6;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Full height layout */
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .prompt-nav a, .prompt-nav span {
+      margin: 0 0.4rem;
+      text-decoration: none;
+      color: #000;
+    }
+    .prompt-nav span { font-weight: bold; }
+
+    /* Scrollable prompt feed */
+    #prompts {
+      flex: 1;
+      overflow-y: auto;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      max-height: 400px; /* Adjust as needed */
+    }
+
+    /* Minimalist scrollbar */
+    #prompts::-webkit-scrollbar {
+      width: 6px;
+    }
+    #prompts::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #prompts::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 3px;
+    }
+    #prompts::-webkit-scrollbar-thumb:hover {
+      background: #999;
+    }
+
+    .prompt-entry {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f3f3f3;
+    }
+    .prompt-entry small {
+      display: block;
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc;
+      font-family: serif;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.9; }
+
+    @media(max-width: 600px) {
+      body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Scribe</h1>
+  <div class="prompt-nav">
+    <a href="#">I</a>
+    <span>II</span>
+    <a href="#">III</a>
+    <a href="#">IV</a>
+  </div>
+</header>
+
+<!-- Scrollable prompts -->
+<section id="prompts"></section>
+
+<!-- Submission form -->
+<section>
+  <form id="prompt-form">
+    <label>
+      <strong>Name</strong>
+      <input type="text" name="name" placeholder="Audre" required>
+    </label>
+    <label>
+      <strong>Location</strong>
+      <input type="text" name="location" placeholder="London, UK" required>
+    </label>
+    <label>
+      <strong>Your first love and how they made you feel</strong>
+      <textarea name="response" placeholder="Write your prompt..." required></textarea>
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBp2QOnTd_0PtX1PCivKLozg9vGIz5OLzQ",
+    authDomain: "scribe-61849.firebaseapp.com",
+    projectId: "scribe-61849",
+    storageBucket: "scribe-61849.appspot.com",
+    messagingSenderId: "209905470454",
+    appId: "1:209905470454:web:118eceef8d217556cdd5d7"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const form = document.getElementById('prompt-form');
+  const prompts = document.getElementById('prompts');
+
+  // Format date as MM.DD · HH:MM AM/PM
+  function formatDate(date) {
+    const options = { month: '2-digit', day: '2-digit' };
+    const datePart = date.toLocaleDateString('en-US', options).replace(/\//g, '.');
+    const timePart = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    return `${datePart} · ${timePart}`;
+  }
+
+  // Submit prompt
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const location = form.location.value.trim();
+    const response = form.response.value.trim();
+
+    if (!name || !location || !response) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    await db.collection('prompts').add({
+      name,
+      location,
+      response,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    form.reset();
+  });
+
+  // Load prompts in real-time and scroll to top
+  db.collection('prompts')
+    .orderBy('timestamp', 'desc')
+    .onSnapshot(snapshot => {
+      prompts.innerHTML = '';
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement('div');
+        div.className = 'prompt-entry';
+        const date = data.timestamp ? data.timestamp.toDate() : new Date();
+        div.innerHTML = `<small>${formatDate(date)} · ${data.location}</small>
+                         <p><strong>${data.name}:</strong> ${data.response}</p>`;
+        prompts.appendChild(div);
+      });
+
+      // Scroll to top when new entries load
+      prompts.scrollTop = 0;
+    });
+</script>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
