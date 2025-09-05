@@ -33,16 +33,17 @@ label {
 
 input, textarea {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* prevents overflow */
   padding: 0.75rem;
-  margin: 0.5rem 0 1rem;
+  margin-top: 0.25rem;
   border: 1px solid #33312d;
-    border-radius: 2px;
-  box-sizing: border-box; /* Prevents overflow */
-  font-family: 'OfficeTimes', serif; /* force font on fields */
+  border-radius: 2px;
+  font-family: 'OfficeTimes', serif;
   font-size: 1rem;
-  resize: vertical;
   color: #fffaee;
-  background-color: black; /* background */
+  background-color: #000;
+  resize: vertical;
 }
 
 @media (max-width: 600px) {
