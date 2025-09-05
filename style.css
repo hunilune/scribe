@@ -1,3 +1,7 @@
 body {
   background-color: #FFFAEE;
+  @font-face {
+    font-family: OfficeTimes;
+    src: url("../scribe/OfficeTimeSharp-RegularMono.otf") format('opentype');
+}
 }
