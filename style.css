@@ -1,7 +1,38 @@
-body {
-  background-color: #FFFAEE;
-  @font-face {
-    font-family: OfficeTimes;
-    src: url("../scribe/OfficeTimeSharp-RegularMono.otf") format('opentype');
+@font-face {
+  font-family: 'OfficeTimes';
+  src: url("../scribe/OfficeTimeSharp-RoundMono.otf") format('opentype');
 }
+
+body {
+  font-family: 'OfficeTimes', serif;
+  margin: 2rem auto;
+  max-width: 700px;
+  line-height: 1.6;
+  color: #111;
+  background-color: #FFFAEE; /* fixed semicolon */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #e1dbc9;
+  font-family: 'OfficeTimes', serif; /* force font on fields */
+  font-size: 1rem;
+  resize: vertical;
+  background-color: #FFFAEE; /* match background */
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  background: black;
+  color: #FFFAEE;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.9;
 }
