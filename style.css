@@ -17,15 +17,35 @@ body {
   height: 100vh;
 }
 
+form {
+  max-width: 700px;   /* Keeps the form nicely centered on large screens */
+  width: 100%;
+  margin: 0 auto;     /* Center horizontally */
+  padding: 0 1rem;    /* Default side padding */
+}
+
+label {
+  display: block;     /* Put label above input */
+  margin-bottom: 1rem;
+  font-weight: bold;  /* Keeps NAME / LOCATION bold */
+}
+
 input, textarea {
-  width: 60%;
+  width: 100%;
   padding: 0.75rem;
   margin: 0.5rem 0 1rem;
   border: 1px solid #e1dbc9;
+  box-sizing: border-box; /* Prevents overflow */
   font-family: 'OfficeTimes', serif; /* force font on fields */
   font-size: 0.5rem;
   resize: vertical;
   background-color: #FFFAEE; /* background */
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 0 1.5rem;
+  }
 }
 
 button {
