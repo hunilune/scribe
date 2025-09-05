@@ -1,75 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>scribe</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompts II</title>
-  
+
   <style>
-    body {
+    @font-face {
       font-family: 'OfficeTimes';
-      margin: 2rem auto;
-      max-width: 700px;
+      src: url('OfficeTimesRound-RoundMono.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'OfficeTimes', serif;
+      font-size: 16px;
+      margin: 0;
       line-height: 1.6;
-      background-color: #000
+      color: #fffaee;
+      background-color: #000;
       display: flex;
       flex-direction: column;
-      height: 100vh; /* Full height layout */
-    } 
-    
-    @font-face {
-  font-family: 'OfficeTimes';
-  src: url('OfficeTimesRound-RoundMono.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
+      height: 150vh; /* full viewport */
+    }
 
-    header {
-      text-align: center;
-      margin-bottom: 1rem;
+    header, p, h1 {
+      padding: 1rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    .prompt-nav a, .prompt-nav span {
-      margin: 0 0.4rem;
-      text-decoration: none;
-      color: #000;
-    }
-    .prompt-nav span { font-weight: bold; }
 
     /* Scrollable prompt feed */
     #prompts {
       flex: 1;
       overflow-y: auto;
-      border-top: 1px solid #e1dbc9;
-      border-bottom: 1px solid #e1dbc9;
-      padding: 1rem 0;
-      margin-bottom: 1rem;
-      max-height: 400px; /* Adjust as needed */
-    }
-
-    /* Minimalist scrollbar */
-    #prompts::-webkit-scrollbar {
-      width: 2px;
-    }
-    #prompts::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    #prompts::-webkit-scrollbar-thumb {
-      background: #e1dbc9;
-      border-radius: 2px;
-    }
-    #prompts::-webkit-scrollbar-thumb:hover {
-      background: #9d9686;
+      border-top: 1px solid #33312d;
+      border-bottom: 1px solid #33312d;
+      padding: 1rem 2rem;
+      margin: 1rem 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .prompt-entry {
@@ -85,115 +59,146 @@
       margin-bottom: 0.3rem;
     }
 
+    form {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box; /* prevent overflow */
+      padding: 0.75rem;
+      margin-top: 0.25rem;
+      border: 1px solid #33312d;
+      border-radius: 2px;
+      font-family: 'OfficeTimes', serif;
+      font-size: 1rem;
+      color: #fffaee;
+      background-color: #000;
+      resize: vertical;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #fffaee;
+      color: black;
+      font-family: 'OfficeTimes', serif;
+      border: 1px solid #e1dbc9;
+      border-radius: 50px;
+      cursor: pointer;
+    }
     button:hover { opacity: 0.9; }
 
     @media(max-width: 600px) {
-      body { padding: 1rem; }
+      header, p, h1, form, #prompts {
+        padding: 0 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>scribe</h1>
-</header>
+  <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
+  <p> Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little scribe.</p>
+  <p> September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
 
-<!-- Scrollable prompts -->
-<section id="prompts"></section>
+  <!-- Scrollable prompts -->
+  <section id="prompts"></section>
 
-<!-- Submission form -->
-<section>
-  <form id="prompt-form">
-    <label>
-      <strong>Name</strong>
-      <input type="text" name="name" placeholder="Akwaeke, Rita, Audre" required>
-    </label>
-    <label>
-      <strong>Location</strong>
-      <input type="text" name="location" placeholder="London, Bedroom, Moon" required>
-    </label>
-    <label>
-      <strong>Your love and how they make you feel</strong>
-      <textarea name="response" placeholder="Reveal..." required></textarea>
-    </label>
-    <button type="Submit">Submit</button>
-  </form>
-</section>
+  <!-- Submission form -->
+  <section>
+    <form id="prompt-form">
+      <label>
+        <strong>Name</strong>
+        <input type="text" name="name" placeholder="Akwaeke, Rita, Audre" required>
+      </label>
+      <label>
+        <strong>Location</strong>
+        <input type="text" name="location" placeholder="London, Bedroom, Moon" required>
+      </label>
+      <label>
+        <strong>Your love and how they make you feel</strong>
+        <textarea name="response" placeholder="Reveal..." required></textarea>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-<script>
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyBp2QOnTd_0PtX1PCivKLozg9vGIz5OLzQ",
-    authDomain: "scribe-61849.firebaseapp.com",
-    projectId: "scribe-61849",
-    storageBucket: "scribe-61849.appspot.com",
-    messagingSenderId: "209905470454",
-    appId: "1:209905470454:web:118eceef8d217556cdd5d7"
-  };
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBp2QOnTd_0PtX1PCivKLozg9vGIz5OLzQ",
+      authDomain: "scribe-61849.firebaseapp.com",
+      projectId: "scribe-61849",
+      storageBucket: "scribe-61849.appspot.com",
+      messagingSenderId: "209905470454",
+      appId: "1:209905470454:web:118eceef8d217556cdd5d7"
+    };
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-  const form = document.getElementById('prompt-form');
-  const prompts = document.getElementById('prompts');
+    const form = document.getElementById('prompt-form');
+    const prompts = document.getElementById('prompts');
 
-  // Format date as MM.DD · HH:MM AM/PM
-  function formatDate(date) {
-    const options = { month: '2-digit', day: '2-digit' };
-    const datePart = date.toLocaleDateString('en-US', options).replace(/\//g, '.');
-    const timePart = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-    return `${datePart} · ${timePart}`;
-  }
-
-  // Submit prompt
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = form.name.value.trim();
-    const location = form.location.value.trim();
-    const response = form.response.value.trim();
-
-    if (!name || !location || !response) {
-      alert("Please fill out all fields.");
-      return;
+    function formatDate(date) {
+      const options = { month: '2-digit', day: '2-digit' };
+      const datePart = date.toLocaleDateString('en-US', options).replace(/\//g, '.');
+      const timePart = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      return `${datePart} · ${timePart}`;
     }
 
-    await db.collection('prompts').add({
-      name,
-      location,
-      response,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const location = form.location.value.trim();
+      const response = form.response.value.trim();
 
-    form.reset();
-  });
+      if (!name || !location || !response) {
+        alert("Please fill out all fields.");
+        return;
+      }
 
-  // Load prompts in real-time and scroll to top
-  db.collection('prompts')
-    .orderBy('timestamp', 'desc')
-    .onSnapshot(snapshot => {
-      prompts.innerHTML = '';
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement('div');
-        div.className = 'prompt-entry';
-        const date = data.timestamp ? data.timestamp.toDate() : new Date();
-        div.innerHTML = `<small>${formatDate(date)} · ${data.location}</small>
-                         <p><strong>${data.name}:</strong> ${data.response}</p>`;
-        prompts.appendChild(div);
+      await db.collection('prompts').add({
+        name,
+        location,
+        response,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
 
-      // Scroll to top when new entries load
-      prompts.scrollTop = 0;
+      form.reset();
     });
-</script>
 
-</body>
-</html>
-<!-- partial -->
-  
+    db.collection('prompts')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(snapshot => {
+        prompts.innerHTML = '';
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement('div');
+          div.className = 'prompt-entry';
+          const date = data.timestamp ? data.timestamp.toDate() : new Date();
+          div.innerHTML = `<small>${formatDate(date)} · ${data.location}</small>
+                           <p><strong>${data.name}:</strong> ${data.response}</p>`;
+          prompts.appendChild(div);
+        });
+        prompts.scrollTop = 0;
+      });
+  </script>
+
 </body>
 </html>
