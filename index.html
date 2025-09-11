@@ -19,6 +19,13 @@
       font-weight: normal;
       font-style: normal;
     }
+    
+    @font-face {
+      font-family: 'Diatype';
+      src: url('ABCDiatypeMonoVariable-Trial.woff') format('webopen');
+      font-weight: normal;
+      font-style: normal;
+    }
 
     body {
       font-family: 'OfficeTimes', serif;
@@ -89,6 +96,7 @@
       font-size: 0.85rem;
       text-transform: lowercase;
       color: #A9A9A9;
+      font-family: 'Diatype', serif;
       margin-bottom: 0.3rem;
     }
 
@@ -96,9 +104,10 @@
       max-width: 700px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 2rem 2rem;
+      padding: 2rem 2rem 2rem;
       box-sizing: border-box;
-      font-family: 'Social', sans-serif;
+      font-family: 'Social', serif;
+      font-size: 0.85rem;
     }
 
     label {
@@ -113,10 +122,10 @@
       box-sizing: border-box;
       padding: 0.75rem;
       margin-top: 0.25rem;
-      border: 1px solid #33312d;
+      border: 1px solid #adadad;
       border-radius: 2px;
-      font-family: 'OfficeTimes', serif;
-      font-size: 1rem;
+      font-family: 'Social', serif;
+      font-size: 0.85rem;
       background-color: white;
       resize: vertical;
     }
@@ -125,7 +134,8 @@
       padding: 0.6rem 1.2rem;
       background: black;
       color: white;
-      font-family: 'OfficeTimes', serif;
+      font-family: 'Social', serif;
+      font-size: 0.8rem;
       border-color: white;
       border-radius: 50px;
       cursor: pointer;
@@ -154,7 +164,9 @@
     <!-- About section -->
     <div class="About">
       <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
+<br>
       <p>Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little scribe.</p>
+      <br>
       <p>September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
     </div>
 
@@ -168,7 +180,7 @@
         <form id="prompt-form">
           <label>
             <strong>Name</strong>
-            <input type="text" name="name" placeholder="Akwaeke, Rita, Audre" required>
+            <input type="text" name="name" placeholder="Audre, Rita, You" required>
           </label>
           <label>
             <strong>Location</strong>
@@ -176,7 +188,7 @@
           </label>
           <label>
             <strong>Your love and how they make you feel</strong>
-            <textarea name="response" placeholder="Reveal..." required></textarea>
+            <textarea name="response" placeholder="Reveal, or don't" required></textarea>
           </label>
           <button type="submit">Submit</button>
         </form>
