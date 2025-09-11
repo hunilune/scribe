@@ -12,14 +12,24 @@
       font-weight: normal;
       font-style: normal;
     }
+    
+    div.About {
+      /*position: relative;*/
+      display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+      width: 300px;
+      padding: 25px;
+
+}
 
     body {
       font-family: 'OfficeTimes', serif;
       font-size: 16px;
       margin: 0;
       line-height: 1.6;
-      color: #fffaee;
-      background-color: #000;
+      color: black;
+      background-color: white;
       display: flex;
       flex-direction: column;
       height: 150vh; /* full viewport */
@@ -83,21 +93,21 @@
       border-radius: 2px;
       font-family: 'OfficeTimes', serif;
       font-size: 1rem;
-      color: #fffaee;
-      background-color: #000;
+      color: #black;
+      background-color: white;
       resize: vertical;
     }
 
     button {
       padding: 0.6rem 1.2rem;
-      background: #fffaee;
-      color: black;
+      background: black;
+      color: white;
       font-family: 'OfficeTimes', serif;
-      border: 1px solid #e1dbc9;
+      border-color: white;
       border-radius: 50px;
       cursor: pointer;
     }
-    button:hover { opacity: 0.9; }
+    button:hover { opacity: 0.5; }
 
     @media(max-width: 600px) {
       header, p, h1, form, #prompts {
@@ -107,10 +117,11 @@
   </style>
 </head>
 <body>
-
+<div class="About">
   <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
   <p> Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little scribe.</p>
-  <p> September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
+  <p> September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p> </div>
+
 
   <!-- Scrollable prompts -->
   <section id="prompts"></section>
