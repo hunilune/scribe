@@ -12,16 +12,6 @@
       font-weight: normal;
       font-style: normal;
     }
-    
-    div.About {
-      /*position: relative;*/
-      display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-      width: 300px;
-      padding: 25px;
-
-}
 
     body {
       font-family: 'OfficeTimes', serif;
@@ -30,9 +20,6 @@
       line-height: 1.6;
       color: black;
       background-color: white;
-      display: flex;
-      flex-direction: column;
-      height: 150vh; /* full viewport */
     }
 
     header, p, h1 {
@@ -41,19 +28,47 @@
       margin: 0 auto;
     }
 
+    /* Layout wrapper */
+    .layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    /* About column (sticky on desktop) */
+    .About {
+      width: 300px;
+      flex-shrink: 0;
+      padding: 25px;
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+      height: fit-content;
+    }
+
+    /* Right column (prompts + form) */
+    .main-content {
+      flex: 1;
+      max-width: 700px;
+    }
+
     /* Scrollable prompt feed */
     #prompts {
       flex: 1;
       overflow-y: auto;
-      border-top: 1px solid #33312d;
-      border-bottom: 1px solid #33312d;
+      /*border-top: 1px solid #33312d;*/
+      /*border-bottom: 1px solid#33312d;*/
       padding: 1rem 2rem;
       margin: 1rem 0;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
       width: 100%;
       box-sizing: border-box;
+      max-height: 400px;
     }
 
     .prompt-entry {
@@ -61,6 +76,7 @@
       padding-bottom: 1rem;
       border-bottom: 1px solid #1f1e1d;
     }
+
     .prompt-entry small {
       display: block;
       font-size: 0.85rem;
@@ -86,14 +102,13 @@
     input, textarea {
       width: 100%;
       max-width: 100%;
-      box-sizing: border-box; /* prevent overflow */
+      box-sizing: border-box;
       padding: 0.75rem;
       margin-top: 0.25rem;
       border: 1px solid #33312d;
       border-radius: 2px;
       font-family: 'OfficeTimes', serif;
       font-size: 1rem;
-      color: #black;
       background-color: white;
       resize: vertical;
     }
@@ -109,7 +124,16 @@
     }
     button:hover { opacity: 0.5; }
 
-    @media(max-width: 600px) {
+    /* Mobile: stack vertically, no sticky */
+    @media(max-width: 800px) {
+      .layout {
+        flex-direction: column;
+      }
+      .About {
+        position: static;
+        width: 100%;
+        padding: 1rem 0;
+      }
       header, p, h1, form, #prompts {
         padding: 0 1rem;
       }
@@ -117,33 +141,40 @@
   </style>
 </head>
 <body>
-<div class="About">
-  <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
-  <p> Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little scribe.</p>
-  <p> September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p> </div>
 
+  <div class="layout">
+    <!-- About section -->
+    <div class="About">
+      <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
+      <p>Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little scribe.</p>
+      <p>September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
+    </div>
 
-  <!-- Scrollable prompts -->
-  <section id="prompts"></section>
+    <!-- Prompts + form -->
+    <div class="main-content">
+      <!-- Scrollable prompts -->
+      <section id="prompts"></section>
 
-  <!-- Submission form -->
-  <section>
-    <form id="prompt-form">
-      <label>
-        <strong>Name</strong>
-        <input type="text" name="name" placeholder="Akwaeke, Rita, Audre" required>
-      </label>
-      <label>
-        <strong>Location</strong>
-        <input type="text" name="location" placeholder="London, Bedroom, Moon" required>
-      </label>
-      <label>
-        <strong>Your love and how they make you feel</strong>
-        <textarea name="response" placeholder="Reveal..." required></textarea>
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
+      <!-- Submission form -->
+      <section>
+        <form id="prompt-form">
+          <label>
+            <strong>Name</strong>
+            <input type="text" name="name" placeholder="Akwaeke, Rita, Audre" required>
+          </label>
+          <label>
+            <strong>Location</strong>
+            <input type="text" name="location" placeholder="London, Bedroom, Moon" required>
+          </label>
+          <label>
+            <strong>Your love and how they make you feel</strong>
+            <textarea name="response" placeholder="Reveal..." required></textarea>
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </div>
+  </div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
