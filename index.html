@@ -84,10 +84,18 @@
       display: block;
       font-size: 13px;
       text-transform: lowercase;
-      color: #75736E;
+      color: #8C8983;  /* updated color */
       font-weight: 350;
       font-family: 'Diatype', serif;
       margin-bottom: 0.25rem;
+    }
+
+    /* Style for names */
+    .prompt-name {
+      font-weight: 400; /* normal weight */
+      display: inline;  /* stay inline with response */
+      margin-right: 0.25rem;
+      color: #fffaee;
     }
 
     /* --- Form styling --- */
@@ -104,12 +112,11 @@
     form label {
       display: block;
       margin-bottom: 1rem;
-      font-weight: bold;
     }
 
     /* Add spacing between input groups */
     form label + label {
-      margin-top: 1.5rem; /* spacing between Name, Location, and Response */
+      margin-top: 1.5rem;
     }
 
     input, textarea {
@@ -120,7 +127,7 @@
       border: 1px solid #191919;
       border-radius: 2px;
       font-family: 'Diatype', serif;
-      font-color: #75736E;
+      color: #75736E;
       font-size: 13px;
       background-color: black;
       resize: vertical;
@@ -134,7 +141,7 @@
       font-size: 13px;
       border-radius: 50px;
       cursor: pointer;
-      margin-top: 1.5rem; /* space above button */
+      margin-top: 1.5rem;
     }
     button:hover { opacity: 0.5; }
 
@@ -169,18 +176,18 @@
       <section>
         <form id="prompt-form">
           <label>
-            <strong>alias</strong>
+            alias
             <input type="text" name="name" placeholder="ama, audre, u" required>
           </label>
 
           <label>
-            <strong>location</strong>
+            location
             <input type="text" name="location" placeholder="london, moon, stars" required>
           </label>
 
           <label>
-            <strong>ur love and how they make you feel</strong>
-            <textarea name="response" placeholder="rdeveal, or don't" required></textarea>
+            ur love and how they make you feel
+            <textarea name="response" placeholder="reveal, or don't" required></textarea>
           </label>
 
           <button type="submit">submit</button>
@@ -252,7 +259,7 @@
           const date = data.timestamp ? data.timestamp.toDate() : new Date();
           div.innerHTML = `
             <small>${formatDate(date)} · ${data.location}</small>
-            <p><strong>${data.name}:</strong> ${data.response}</p>
+            <p><span class="prompt-name">${data.name}:</span> ${data.response}</p>
           `;
           prompts.appendChild(div);
         });
