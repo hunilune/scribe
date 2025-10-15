@@ -257,19 +257,6 @@
         // Smooth scroll to top
         prompts.scrollTo({ top: 0, behavior: 'smooth' });
       });
-
-    // TEMP TEST ENTRIES (remove once Firestore works)
-    document.addEventListener('DOMContentLoaded', () => {
-      if (prompts.children.length === 0) {
-        for (let i = 0; i < 10; i++) {
-          const div = document.createElement('div');
-          div.className = 'prompt-entry';
-          div.innerHTML = `<small>10.${String(i + 1).padStart(2, '0')} · 8:${i} PM · Test City</small>
-                           <p><strong>Tester:</strong> Example entry ${i + 1}</p>`;
-          prompts.appendChild(div);
-        }
-      }
-    });
   </script>
 </body>
 </html>
