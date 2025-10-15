@@ -6,27 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* === Fonts === */
     @font-face {
       font-family: 'OfficeTimes';
       src: url('OfficeTimesRound-RoundMono.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
     }
-    
     @font-face {
       font-family: 'Social';
       src: url('ABCSocialCyrillic-Regular-Trial.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
     }
-    
     @font-face {
       font-family: 'Diatype';
       src: url('ABCDiatypeMonoVariable-Trial.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
     }
 
+    /* === Base === */
     body {
       font-family: 'Diatype', serif;
       font-size: 16px;
@@ -36,13 +30,7 @@
       background-color: white;
     }
 
-    header, p, h1 {
-      padding: 1rem 2rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Layout wrapper */
+    /* === Layout === */
     .layout {
       display: flex;
       flex-direction: row;
@@ -51,11 +39,13 @@
       gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      height: 100vh; /* full viewport height */
       padding: 2rem;
       box-sizing: border-box;
+      overflow: hidden; /* contain scroll */
     }
 
-    /* About column (sticky on desktop) */
+    /* === About Column === */
     .About {
       width: 300px;
       flex-shrink: 0;
@@ -64,25 +54,31 @@
       top: 2rem;
       align-self: flex-start;
       height: fit-content;
+      font-family: 'Diatype', serif;
+      font-size: 0.95rem;
     }
 
-    /* Right column (prompts + form) */
+    /* === Main Content === */
     .main-content {
       flex: 1;
       max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
     }
 
-    /* Scrollable prompt feed */
+    /* === Prompts Feed === */
     #prompts {
       flex: 1;
       overflow-y: auto;
-      /*border-top: 1px solid #33312d;*/
-      /*border-bottom: 1px solid#33312d;*/
       padding: 1rem 2rem;
       margin: 1rem 0;
       width: 100%;
       box-sizing: border-box;
-      max-height: 400px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      scroll-behavior: smooth;
     }
 
     .prompt-entry {
@@ -91,6 +87,8 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       font-family: 'Social', serif;
       font-size: 0.9rem;
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
     }
 
     .prompt-entry small {
@@ -102,6 +100,7 @@
       margin-bottom: 0.25rem;
     }
 
+    /* === Form === */
     form {
       max-width: 700px;
       width: 100%;
@@ -141,43 +140,57 @@
       border-color: white;
       border-radius: 50px;
       cursor: pointer;
+      transition: opacity 0.2s ease;
     }
     button:hover { opacity: 0.5; }
 
-    /* Mobile: stack vertically, no sticky */
+    /* === Animation === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === Mobile === */
     @media(max-width: 800px) {
       .layout {
         flex-direction: column;
+        height: auto;
+        overflow: visible;
       }
+
       .About {
         position: static;
         width: 100%;
         padding: 1rem 0;
       }
-      header, p, h1, form, #prompts {
-        padding: 0 1rem;
+
+      .main-content {
+        height: auto;
+      }
+
+      #prompts {
+        max-height: none;
+        overflow: visible;
       }
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="layout">
-    <!-- About section -->
+    <!-- About Section -->
     <div class="About">
       <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
-<br>
+      <br>
       <p>Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little Scribe.</p>
       <br>
       <p>September’s prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
     </div>
 
-    <!-- Prompts + form -->
+    <!-- Prompts + Form -->
     <div class="main-content">
-      <!-- Scrollable prompts -->
       <section id="prompts"></section>
 
-      <!-- Submission form -->
       <section>
         <form id="prompt-form">
           <label>
@@ -198,12 +211,11 @@
     </div>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- === Firebase === -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyBp2QOnTd_0PtX1PCivKLozg9vGIz5OLzQ",
       authDomain: "scribe-61849.firebaseapp.com",
@@ -256,13 +268,16 @@
           const div = document.createElement('div');
           div.className = 'prompt-entry';
           const date = data.timestamp ? data.timestamp.toDate() : new Date();
-          div.innerHTML = `<small>${formatDate(date)} · ${data.location}</small>
-                           <p><strong>${data.name}:</strong> ${data.response}</p>`;
+          div.innerHTML = `
+            <small>${formatDate(date)} · ${data.location}</small>
+            <p><strong>${data.name}:</strong> ${data.response}</p>
+          `;
           prompts.appendChild(div);
         });
-        prompts.scrollTop = 0;
+
+        // Smooth auto-scroll to top
+        prompts.scrollTo({ top: 0, behavior: 'smooth' });
       });
   </script>
-
 </body>
 </html>
