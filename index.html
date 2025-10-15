@@ -279,5 +279,20 @@
         prompts.scrollTo({ top: 0, behavior: 'smooth' });
       });
   </script>
+
+  // Temporary test filler — remove after verifying layout
+document.addEventListener('DOMContentLoaded', () => {
+  const prompts = document.getElementById('prompts');
+  if (!prompts) return;
+  for (let i = 0; i < 20; i++) {
+    const div = document.createElement('div');
+    div.className = 'prompt-entry';
+    div.innerHTML = `<small>10.${String(i + 1).padStart(2, '0')} · 8:${i} PM · Test City</small>
+                     <p><strong>Tester:</strong> This is example entry ${i + 1}</p>`;
+    prompts.appendChild(div);
+  }
+});
+
+    
 </body>
 </html>
