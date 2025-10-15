@@ -27,8 +27,8 @@
       margin: 0;
       line-height: 1.6;
       font-weight: 350;
-      color: #191919;
-      background-color: #fffaee;
+      color: #fffaee;
+      background-color: black;
     }
 
     /* --- Layout --- */
@@ -76,15 +76,15 @@
       margin-bottom: 2rem;
       padding-bottom: 1rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      font-family: 'Social', serif;
-      font-size: 0.9rem;
+      font-family: 'Diatype', serif;
+      font-size: 13px;
     }
 
     .prompt-entry small {
       display: block;
-      font-size: 0.85rem;
+      font-size: 13px;
       text-transform: lowercase;
-      color: #C2BCAA;
+      color: #75736E;
       font-weight: 350;
       font-family: 'Diatype', serif;
       margin-bottom: 0.25rem;
@@ -97,8 +97,8 @@
       margin: 0 auto;
       padding: 2rem 2rem 2rem;
       box-sizing: border-box;
-      font-family: 'Social', serif;
-      font-size: 0.85rem;
+      font-family: 'Diatype', serif;
+      font-size: 13px;
     }
 
     form label {
@@ -117,20 +117,21 @@
       box-sizing: border-box;
       padding: 0.75rem;
       margin-top: 0.25rem;
-      border: 1px solid #E1DBC9;
+      border: 1px solid #191919;
       border-radius: 2px;
-      font-family: 'Social', serif;
-      font-size: 0.85rem;
-      background-color: #fffaee;
+      font-family: 'Diatype', serif;
+      font-color: #75736E;
+      font-size: 13px;
+      background-color: black;
       resize: vertical;
     }
 
     button {
       padding: 0.6rem 1.2rem;
-      background: #191919;
+      background: black;
       color: #fffaee;
-      font-family: 'Social', serif;
-      font-size: 0.8rem;
+      font-family: 'Diatype', serif;
+      font-size: 13px;
       border-radius: 50px;
       cursor: pointer;
       margin-top: 1.5rem; /* space above button */
@@ -154,11 +155,11 @@
   <div class="layout">
     <!-- About section -->
     <div class="About">
-      <p>Scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
+      <p>⬤ scribe is a literary platform in early development, intended as a curated, quieter space for meditating upon queer identity and the complex emotions that can often accompany it.</p> 
       <br>
-      <p>Each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. If this speaks to you, perhaps try a little Scribe.</p>
+      <p>each prompt draws from the work of queer thinkers, writers, essayists, and artists, presenting their core principles and valuable insights as starting points for reflection. should this speak to u, perhaps try a little scribe.</p>
       <br>
-      <p>This prompt invites you to reflect on the parts of yourself that remain hidden and whether they now long to be seen.</p>
+      <p>this prompt invites u to reflect on the parts of urself that remain hidden and whether they now long to be seen.</p>
     </div>
 
     <!-- Prompts + form -->
@@ -168,21 +169,21 @@
       <section>
         <form id="prompt-form">
           <label>
-            <strong>name</strong>
-            <input type="text" name="name" placeholder="audre, rita, u" required>
+            <strong>alias</strong>
+            <input type="text" name="name" placeholder="ama, audre, u" required>
           </label>
 
           <label>
-            <strong>Location</strong>
-            <input type="text" name="location" placeholder="london, bedroom, stars" required>
+            <strong>location</strong>
+            <input type="text" name="location" placeholder="london, moon, stars" required>
           </label>
 
           <label>
-            <strong>ur love and how they make u feel</strong>
-            <textarea name="response" placeholder="reveal, or don't" required></textarea>
+            <strong>ur love and how they make you feel</strong>
+            <textarea name="response" placeholder="rdeveal, or don't" required></textarea>
           </label>
 
-          <button type="submit">Submit</button>
+          <button type="submit">submit</button>
         </form>
       </section>
     </div>
