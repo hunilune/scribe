@@ -23,10 +23,10 @@
 
     body {
       font-family: 'Diatype', serif;
-      font-size: 12px;
+      font-size: 13px;
       margin: 0;
       line-height: 1.6;
-      font-weight: 300;
+      font-weight: 350;
       color: #191919;
       background-color: #fffaee;
     }
@@ -90,6 +90,7 @@
       margin-bottom: 0.25rem;
     }
 
+    /* --- Form styling --- */
     form {
       max-width: 700px;
       width: 100%;
@@ -98,6 +99,17 @@
       box-sizing: border-box;
       font-family: 'Social', serif;
       font-size: 0.85rem;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    /* Add spacing between input groups */
+    form label + label {
+      margin-top: 1.5rem; /* spacing between Name, Location, and Response */
     }
 
     input, textarea {
@@ -121,6 +133,7 @@
       font-size: 0.8rem;
       border-radius: 50px;
       cursor: pointer;
+      margin-top: 1.5rem; /* space above button */
     }
     button:hover { opacity: 0.5; }
 
@@ -155,19 +168,20 @@
       <section>
         <form id="prompt-form">
           <label>
-            <strong>Name</strong>
-            <input type="text" name="name" placeholder="Audre, Rita, You" required>
+            <strong>name</strong>
+            <input type="text" name="name" placeholder="audre, rita, u" required>
           </label>
-          <br>
+
           <label>
             <strong>Location</strong>
-            <input type="text" name="location" placeholder="London, Bedroom, Moon" required>
+            <input type="text" name="location" placeholder="london, bedroom, stars" required>
           </label>
-          <br>
+
           <label>
-            <strong>Your love and how they make you feel</strong>
-            <textarea name="response" placeholder="Reveal, or don't" required></textarea>
+            <strong>ur love and how they make u feel</strong>
+            <textarea name="response" placeholder="reveal, or don't" required></textarea>
           </label>
+
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -179,7 +193,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyBp2QOnTd_0PtX1PCivKLozg9vGIz5OLzQ",
       authDomain: "scribe-61849.firebaseapp.com",
@@ -195,13 +208,6 @@
     const form = document.getElementById('prompt-form');
     const prompts = document.getElementById('prompts');
 
-    console.log("Firebase initialized:", firebase.apps.length);
-
-    db.collection('prompts')
-      .get()
-      .then(snap => console.log("Prompts loaded:", snap.size))
-      .catch(console.error);
-
     function formatDate(date) {
       const options = { month: '2-digit', day: '2-digit' };
       const datePart = date.toLocaleDateString('en-US', options).replace(/\//g, '.');
@@ -209,7 +215,6 @@
       return `${datePart} · ${timePart}`;
     }
 
-    // Submit handler
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const name = form.name.value.trim();
@@ -231,18 +236,14 @@
       form.reset();
     });
 
-    // Real-time listener
     db.collection('prompts')
       .orderBy('timestamp', 'desc')
       .onSnapshot(snapshot => {
-        console.log("Snapshot received:", snapshot.size, "documents");
         prompts.innerHTML = '';
-
         if (snapshot.empty) {
           prompts.innerHTML = '<p style="opacity:0.5;font-family:sans-serif;">No entries yet.</p>';
           return;
         }
-
         snapshot.forEach(doc => {
           const data = doc.data();
           const div = document.createElement('div');
@@ -254,8 +255,6 @@
           `;
           prompts.appendChild(div);
         });
-
-        // Smooth scroll to top
         prompts.scrollTo({ top: 0, behavior: 'smooth' });
       });
   </script>
