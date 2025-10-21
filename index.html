@@ -41,7 +41,7 @@
 
     header h1 {
       font-family: 'Diatype', monospace;
-      font-size: 16px; /* ↓ from 32px */
+      font-size: 14px; /* ↓ from 32px */
       font-weight: 400;
       margin: 0;
     }
@@ -77,10 +77,10 @@
     main {
       max-width: 750px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 2rem 2rem;
       display: flex;
       flex-direction: column;
-      gap: 6rem;
+      gap: 1rem;
     }
 
     /* --- Sticky Prompt Header --- */
@@ -88,12 +88,12 @@
       position: sticky;
       top: 0;
       background: #F1EFE9;
-      padding: 2rem 0 3rem;
+      padding: 1rem 0 2rem;
       z-index: 10;
     }
 
     .prompt-header small {
-      font-family: 'Social', sans serif;
+      font-family: 'Social', sans-serif;
       font-size: 16px; /* ↓ from 32px */
       opacity: 0.8;
       display: block;
@@ -103,6 +103,7 @@
     .prompt-title {
       font-family: 'Arizona', serif;
       font-size: 24px; /* ↓ from 48px */
+      font-weight: 350;
       line-height: 1.1;
       margin: 0 0 0.2rem 0;
     }
@@ -110,6 +111,7 @@
     .prompt-subtitle {
       font-family: 'Arizona', serif;
       font-size: 24px; /* ↓ from 48px */
+      font-weight: 350;
       color: rgba(25,25,25,0.7);
       margin: 0;
       line-height: 1.1;
@@ -148,7 +150,7 @@
 
     .prompt-text {
       font-family: 'Arizona', serif;
-      font-size: 16px; /* ↓ from 32px */
+      font-size: 17px; /* ↓ from 32px */
       line-height: 1.6;
       color: #191919;
       margin: 0;
@@ -178,7 +180,7 @@
       background: transparent;
       padding: 0.6rem 0;
       font-family: 'Diatype', monospace;
-      font-size: 10px; /* ↓ from 20px */
+      font-size: 12px; /* ↓ from 20px */
       color: #191919;
       outline: none;
     }
@@ -198,9 +200,9 @@
       background: #191919;
       color: #F1EFE9;
       font-family: 'Diatype', monospace;
-      font-size: 10px;
+      font-size: 11px;
       border: none;
-      border-radius: 50px;
+      border-radius: 25px;
       padding: 0.5rem 1.2rem;
       cursor: pointer;
       transition: opacity 0.2s ease;
@@ -222,7 +224,7 @@
     <section class="prompt-header">
       <small>current prompt</small>
       <h2 class="prompt-title">Who do you love?</h2>
-      <h3 class="prompt-subtitle">How do they help you feel seen?</h3>
+      <h3 class="prompt-subtitle">How do they make you feel seen?</h3>
     </section>
 
     <div id="prompts"></div>
@@ -230,15 +232,15 @@
     <form id="prompt-form">
       <label>
         Name
-        <input type="text" name="name" placeholder="Audre..." required>
+        <input type="text" name="name" placeholder="Ama…" required>
       </label>
       <label>
         Location
-        <input type="text" name="location" placeholder="London..." required>
+        <input type="text" name="location" placeholder="Moon…" required>
       </label>
       <label>
         Response
-        <textarea name="response" placeholder="She feels like everything is falling into place..." required></textarea>
+        <textarea name="response" placeholder="As if everything is falling into place…" required></textarea>
       </label>
       <button type="submit">Submit</button>
     </form>
