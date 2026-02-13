@@ -4,31 +4,37 @@
   <meta charset="UTF-8">
   <title>Scribe</title>
   <link rel="icon" href="Favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     @font-face {
+      font-family: 'Gaisyr';
+      src: url('ABCGaisyrEdu-Book.woff') format('woff');
+    }
+
+    @font-face {
       font-family: 'Diatype';
-      src: url('ABCDiatypeMonoVariable-Trial.woff') format('woff');
+      src: url('ABCDiatypeRoundedEdu-Regular.woff') format('woff');
     }
 
-    @font-face {
-      font-family: 'Arizona';
-      src: url('ABCArizonaMixVariable-Trial.woff') format('woff');
+    .fragment-mono-regular {
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
     }
 
-    @font-face {
-      font-family: 'Arizona Light';
-      src: url('ABCArizonaMix-Light-Trial.woff') format('woff');
-    }
-
-    @font-face {
-      font-family: 'Social';
-      src: url('ABCSocialCyrillic-Regular-Trial.woff') format('woff');
+    .fragment-mono-regular-italic {
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-style: italic;
     }
 
     body {
-      font-family: 'Diatype', monospace;
+      font-family: 'Fragment Mono', monospace;
       background-color: #FFFAEE;
       color: #191919;
       margin: 0;
@@ -45,7 +51,7 @@
     }
 
     header h1 {
-      font-family: 'Diatype', monospace;
+      font-family: 'Fragment Mono', monospace;
       font-size: 13px;
       font-weight: 400;
       margin: 0;
@@ -106,7 +112,7 @@
     }
 
     .prompt-title {
-      font-family: 'Arizona Light', serif;
+      font-family: 'Gaisyr', serif;
       font-size: 24px;
       font-weight: 350;
       line-height: 1.1;
@@ -147,7 +153,7 @@
     }
 
     .prompt-meta {
-      font-family: 'Diatype', monospace;
+      font-family: 'Fragment Mono', monospace;
       font-size: 12px;
       display: flex;
       flex-wrap: wrap;
@@ -162,7 +168,7 @@
     }
 
     .prompt-text {
-      font-family: 'Arizona Light', serif;
+      font-family: 'Gaisyr', serif;
       font-size: 17px;
       font-weight: light;
       line-height: 1.3;
@@ -181,7 +187,7 @@
     }
 
     label {
-      font-family: 'Diatype', monospace;
+      font-family: 'Fragment Mono', monospace;
       font-size: 12px;
       display: block;
       margin-bottom: 0.75rem;
@@ -193,7 +199,7 @@
       border-bottom: 1px solid #191919;
       background: transparent;
       padding: 0.7rem 0;
-      font-family: 'Diatype', monospace;
+      font-family: 'Fragment Mono', monospace;
       font-size: 12px;
       color: #191919;
       outline: none;
@@ -213,7 +219,7 @@
     align-self: flex-start;
   background: #1d1d1d;
   color: #fffaee;
-  font-family: 'Social', sans-serif;
+  font-family: 'Diatype', sans-serif;
   font-weight: 350;
   font-size: 12px;
   border: #1d1d1d;
