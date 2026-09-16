@@ -54,6 +54,10 @@
       margin: 0;
     }
 
+h5 {       
+	font-family: 'Fragment Mono', monospace;
+   font-size:10px;}
+
     header img.vase {
       width: 90px;
       height: auto;
