@@ -1,3 +1,7 @@
+/* Font by Dinamo Typefaces */
+
+/* - Source: abcdinamo.com */
+
 @font-face {
 	font-family: "Diatype";
 	src: url("ABCDiatypeRoundedVariableEdu-Regular.woff") format("woff");
@@ -120,6 +124,7 @@
     }
 
     /* --- Response List --- */
+
     #prompts {
       overflow-y: scroll;
       padding: 4rem 0 0 0;
