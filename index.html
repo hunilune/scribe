@@ -2,46 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scribe</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fenix&display=swap" rel="stylesheet">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Fenix&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header>
     <h1>(Scribe)</h1>
+    <a href="about.html">About</a>
   </header>
-    
+
   <main>
-    <section class="prompt-header">
-      <h2 class="prompt-title">Who do you love?</h2>
-      <h3 class="prompt-subtitle">How do they help you feel seen?</h3>
-    </section>
+    <!-- Left column: hidden on mobile -->
+    <aside class="muse">
+      <h2 class="col-label">muse</h2>
+      <p class="muse-body">
+        <span class="muse-title">All About Love</span>
+        <span class="muse-author">bell hooks</span>
+      </p>
+    </aside>
 
-    <div id="prompts"></div>
+    <!-- Right column -->
+    <div class="prompt-col">
+      <section class="prompt-header">
+        <h2 class="col-label">prompt</h2>
+        <h3 class="prompt-title">Who do you love?</h3>
+        <h3 class="prompt-subtitle">How do they help you feel seen?</h3>
+      </section>
 
-    <form id="prompt-form">
-      <label>
-        Name
-        <input type="text" name="name" placeholder="Oshun" required>
-      </label>
-      <label>
-        Place
-        <input type="text" name="location" placeholder="Silky moon" required>
-      </label>
-      <label>
-        Thoughts
-        <textarea name="response" placeholder="As if everything is falling into place…" required></textarea>
-      </label>
-      <button type="submit">Submit ></button>
-    </form>
+      <div id="prompts"></div>
+
+      <form id="prompt-form">
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Oshun" required>
+        </label>
+        <label>
+          Place
+          <input type="text" name="location" placeholder="Silky moon" required>
+        </label>
+        <label>
+          Thoughts
+          <textarea name="response" placeholder="As if everything is falling into place…" required></textarea>
+        </label>
+        <button type="submit">Submit ></button>
+      </form>
+    </div>
   </main>
 
   <!-- Firebase SDK -->
@@ -66,6 +77,13 @@
 
     function formatDate(date) {
       return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function span(className, text) {
+      const el = document.createElement('span');
+      el.className = className;
+      el.textContent = text; // textContent keeps user input from injecting HTML
+      return el;
     }
 
     form.addEventListener('submit', async e => {
@@ -93,19 +111,25 @@
         snapshot.forEach(doc => {
           const data = doc.data();
           const date = data.timestamp ? data.timestamp.toDate() : new Date();
+
           const entry = document.createElement('div');
           entry.className = 'prompt-entry';
-          entry.innerHTML = `
-            <div class="prompt-meta">
-              <span class="name">${data.name}</span>
-              <span class="time">${formatDate(date)}</span>
-              <span class="location">${data.location}</span>
-            </div>
-            <div class="prompt-text">${data.response}</div>
-          `;
+
+          const meta = document.createElement('div');
+          meta.className = 'prompt-meta';
+          meta.append(
+            span('name', data.name),
+            span('time', formatDate(date)),
+            span('location', data.location)
+          );
+
+          const text = document.createElement('div');
+          text.className = 'prompt-text';
+          text.textContent = data.response;
+
+          entry.append(meta, text);
           prompts.appendChild(entry);
         });
-        prompts.scrollTo({ top: 0, behavior: 'smooth' });
       });
   </script>
 </body>
