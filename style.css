@@ -21,7 +21,7 @@
 
       body {
       font-family: 'Fragment Mono', monospace;
-      background-color: #FFFAEE;
+      background-color: #FFCD45;
       color: #191919;
       margin: 0;
       padding: 0;
@@ -102,7 +102,6 @@
       position: sticky;
       top: 0;
       padding: 1rem 0 2rem;
-      background-color: #FFFAEE;
       z-index: 10;
     }
 
